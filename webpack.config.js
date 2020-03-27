@@ -27,13 +27,28 @@ module.exports =  {
             },
             {
                 test: /\.scss$/,
+                loaders: ['style', 'css', 'sass']
+            },
+            {
+                test: /\.scss$/,
                 use: [
                     'vue-style-loader',
                     'css-loader',
                     {
                         loader: 'sass-loader',
                         options: {
-                            data: '$color: red'
+                            data: '$color: red',
+                            implementation: require('sass'),
+                            fiber: require('fibers'),
+                            indentedSyntax: true // optional
+                        },
+                        // Requires sass-loader@^8.0.0
+                        options: {
+                            implementation: require('sass'),
+                            sassOptions: {
+                                fiber: require('fibers'),
+                                indentedSyntax: true // optional
+                            }
                         }
                     }
                 ]

@@ -1,8 +1,39 @@
 // index.js
 
 import Vue from 'vue'
-import AppComponent from './components/AppComponent.vue'
+import router from './router'
+import { store } from './store'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+// import vuetify from './plugins/vuetify'
+
+import App from './App.vue'
+
+Vue.use(Vuetify)
+
+export default new Vuetify({
+  icons: {
+    iconfont: 'md',  // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4'
+  },
+  theme: {
+    dark: false,
+  },
+  themes: {
+    light: {
+      primary: "#4682b4",
+      secondary: "#b0bec5",
+      accent: "#8c9eff",
+      error: "#b71c1c",
+    },
+  },
+})
+
+Vue.config.productionTip = false
 
 new Vue({
-	render: h => h(AppComponent)
-}).$mount('#app')
+	el: '#app',
+	router,
+	store,
+	components: { App },
+	template: '<App />'
+})
